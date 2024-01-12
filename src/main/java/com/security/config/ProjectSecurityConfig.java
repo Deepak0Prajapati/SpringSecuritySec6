@@ -1,5 +1,5 @@
 package com.security.config;
-//package
+//base package 
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
