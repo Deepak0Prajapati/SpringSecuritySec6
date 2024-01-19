@@ -28,5 +28,7 @@ public class BalanceController {
 		}
 		
 	}
+	
+	//git error message checking code
 
 }

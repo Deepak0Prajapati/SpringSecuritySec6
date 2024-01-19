@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.security.model.Contact;
 
-public interface ContactRepository extends CrudRepository<Contact, Long>{
+public interface ContactRepository extends CrudRepository<Contact, String>{
 
 }
