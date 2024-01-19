@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.security.model.Cards;
 
-public interface CardsRepository extends CrudRepository<Cards, Long>{
+public interface CardsRepository extends CrudRepository<Cards, Integer>{
 	
 	List<Cards> findByCustomerId(int customerId);
 
