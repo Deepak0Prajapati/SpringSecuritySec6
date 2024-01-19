@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.security.model.Notice;
 
-public interface NoticeRepository extends CrudRepository<Notice, Long>{
+public interface NoticeRepository extends CrudRepository<Notice, Integer>{
 	
 	@Query(value = "from Notice n where CURDATE() BETWEEN noticBegDt AND noticEndDt")
 	List<Notice> findAllActiveNotices();
