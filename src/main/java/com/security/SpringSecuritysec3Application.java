@@ -12,4 +12,3 @@ public class SpringSecuritysec3Application {
 	}
 
 }
-// git new feature
