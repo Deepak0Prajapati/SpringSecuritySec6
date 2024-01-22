@@ -20,6 +20,7 @@ import com.security.filter.AuthoritiesLoggingAfterFilter;
 import com.security.filter.AuthoritiesLoggingAtFilter;
 import com.security.filter.CsrfCookieFilter;
 import com.security.filter.JWTTokenGeneratorFilter;
+import com.security.filter.JWTTokenValidatorFilter;
 import com.security.filter.RequestValidationBeforeFilter;
 
 import java.util.Arrays;
@@ -55,6 +56,7 @@ public class ProjectSecurityConfig {
                 .addFilterAt(new AuthoritiesLoggingAtFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests)->requests
                         .requestMatchers("/myAccount").hasRole("USER")
                         .requestMatchers("/myBalance").hasAnyRole("USER","ADMIN")
