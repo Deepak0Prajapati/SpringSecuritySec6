@@ -19,8 +19,10 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import com.security.filter.AuthoritiesLoggingAfterFilter;
 import com.security.filter.AuthoritiesLoggingAtFilter;
 import com.security.filter.CsrfCookieFilter;
+import com.security.filter.JWTTokenGeneratorFilter;
 import com.security.filter.RequestValidationBeforeFilter;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 
@@ -42,6 +44,7 @@ public class ProjectSecurityConfig {
                         config.setAllowedMethods(Collections.singletonList("*"));
                         config.setAllowCredentials(true);
                         config.setAllowedHeaders(Collections.singletonList("*"));
+                        config.setExposedHeaders(Arrays.asList("AUTHORIZATION"));
                         config.setMaxAge(3600L);
                         return config;
                     }
@@ -51,6 +54,7 @@ public class ProjectSecurityConfig {
                 .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
                 .addFilterAt(new AuthoritiesLoggingAtFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests)->requests
                         .requestMatchers("/myAccount").hasRole("USER")
                         .requestMatchers("/myBalance").hasAnyRole("USER","ADMIN")
